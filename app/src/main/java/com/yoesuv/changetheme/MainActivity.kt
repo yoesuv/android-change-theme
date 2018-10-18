@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupSwitch(){
         switchMain.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
-            Log.d("result_debug","MainActivity # setupSwitch $b")
+            Log.d(AppConstants.RESULT_DEBUG,"MainActivity # setupSwitch $b")
             if (b) {
                 setTheme(R.style.AppThemeLight)
             } else {
