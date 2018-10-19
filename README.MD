@@ -3,7 +3,7 @@
 * change light/dark theme
 * change color background dynamically
 
-[Download APK]()
+[Download APK](https://github.com/yoesuv/android-change-theme/blob/master/com.yoesuv.changetheme-v1(1.0.0)-release.apk)
 
 | Screenshot |
 | :---: |
