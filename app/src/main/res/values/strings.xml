@@ -2,4 +2,5 @@
     <string name="app_name">Change Theme</string>
 
     <string name="change_light_dark_theme">Change Light or Dark Theme </string>
+    <string name="dark_theme">Dark Theme</string>
 </resources>
