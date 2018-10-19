@@ -63,6 +63,14 @@
                 android:layout_marginStart="16dp"
                 app:srcCompat="@drawable/round_blue_grey_2"/>
 
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/menuDark3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                app:srcCompat="@drawable/round_blue_grey_3"/>
+
         </LinearLayout>
 
     </LinearLayout>

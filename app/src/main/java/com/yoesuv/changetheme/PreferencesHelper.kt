@@ -14,4 +14,12 @@ class PreferencesHelper(context: Context) {
     fun getBoolean(key: String): Boolean{
         return prefHelper.getBoolean(key, true)
     }
+
+    fun setString(key: String, value: String){
+        prefHelper.edit().putString(key, value).apply()
+    }
+
+    fun getString(key: String): String?{
+        return prefHelper.getString(key,"")
+    }
 }

@@ -21,23 +21,56 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.elevation = 8F
 
         setupSwitch()
+        switchDarkTheme()
     }
 
     private fun setupSwitch() {
         switchMain.isChecked = theme!!
         switchMain.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
             App.prefHelper?.setBoolean(AppConstants.PREFERENCES_THEME_LIGHT_DARK, b)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            recreate()
         }
     }
 
     private fun switchLightDarkTheme(value: Boolean?) {
         if (value!!) {
-            setTheme(R.style.AppThemeDark)
+            val type = App.prefHelper?.getString(AppConstants.PREFERENCES_THEME_DARK_VALUE)
+            if (type=="") {
+                setTheme(R.style.AppThemeDark)
+            } else if (type == MyDarkTheme.ONE.name) {
+                setTheme(R.style.AppThemeDarkOne)
+            } else if (type == MyDarkTheme.TWO.name){
+                setTheme(R.style.AppThemeDarkTwo)
+            } else {
+                setTheme(R.style.AppThemeDark)
+            }
         } else {
             setTheme(R.style.AppThemeLight)
+        }
+    }
+
+    private fun switchDarkTheme(){
+        if (theme!!) {
+            menuDarkDefault.setOnClickListener {
+                App.prefHelper?.setString(AppConstants.PREFERENCES_THEME_DARK_VALUE, MyDarkTheme.DEFAULT.name)
+                setTheme(R.style.AppThemeDark)
+                recreate()
+            }
+            menuDark1.setOnClickListener {
+                App.prefHelper?.setString(AppConstants.PREFERENCES_THEME_DARK_VALUE, MyDarkTheme.ONE.name)
+                setTheme(R.style.AppThemeDarkOne)
+                recreate()
+            }
+            menuDark2.setOnClickListener {
+                App.prefHelper?.setString(AppConstants.PREFERENCES_THEME_DARK_VALUE, MyDarkTheme.TWO.name)
+                setTheme(R.style.AppThemeDarkTwo)
+                recreate()
+            }
+            menuDark3.setOnClickListener {
+                App.prefHelper?.setString(AppConstants.PREFERENCES_THEME_DARK_VALUE, MyDarkTheme.THREE.name)
+                setTheme(R.style.AppThemeDarkThree)
+                recreate()
+            }
         }
     }
 }
