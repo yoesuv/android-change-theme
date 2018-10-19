@@ -1,6 +1,5 @@
 package com.yoesuv.changetheme
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
@@ -22,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         setupSwitch()
         switchDarkTheme()
+        setStatus()
     }
 
     private fun setupSwitch() {
@@ -35,14 +35,12 @@ class MainActivity : AppCompatActivity() {
     private fun switchLightDarkTheme(value: Boolean?) {
         if (value!!) {
             val type = App.prefHelper?.getString(AppConstants.PREFERENCES_THEME_DARK_VALUE)
-            if (type=="") {
-                setTheme(R.style.AppThemeDark)
-            } else if (type == MyDarkTheme.ONE.name) {
-                setTheme(R.style.AppThemeDarkOne)
-            } else if (type == MyDarkTheme.TWO.name){
-                setTheme(R.style.AppThemeDarkTwo)
-            } else {
-                setTheme(R.style.AppThemeDark)
+            when (type) {
+                "" -> { setTheme(R.style.AppThemeDark) }
+                MyDarkTheme.ONE.name -> setTheme(R.style.AppThemeDarkOne)
+                MyDarkTheme.TWO.name -> setTheme(R.style.AppThemeDarkTwo)
+                MyDarkTheme.THREE.name -> setTheme(R.style.AppThemeDarkThree)
+                else -> setTheme(R.style.AppThemeDark)
             }
         } else {
             setTheme(R.style.AppThemeLight)
@@ -73,4 +71,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun setStatus(){
+        val type = App.prefHelper?.getString(AppConstants.PREFERENCES_THEME_DARK_VALUE)
+        menuDarkDefault.setImageResource(R.drawable.round_default)
+        menuDark1.setImageResource(R.drawable.round_blue_grey)
+        menuDark2.setImageResource(R.drawable.round_blue_grey_2)
+        menuDark3.setImageResource(R.drawable.round_blue_grey_3)
+        when (type) {
+            "" -> menuDarkDefault.setImageResource(R.drawable.round_default_selected)
+            MyDarkTheme.ONE.name -> menuDark1.setImageResource(R.drawable.round_blue_grey_selected)
+            MyDarkTheme.TWO.name -> menuDark2.setImageResource(R.drawable.round_blue_grey_2_selected)
+            MyDarkTheme.THREE.name -> menuDark3.setImageResource(R.drawable.round_blue_grey_3_selected)
+            else -> menuDarkDefault.setImageResource(R.drawable.round_default_selected)
+        }
+    }
+
 }
